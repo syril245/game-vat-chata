@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="vi"><head><meta charset="utf-8"><title>Hành trình Vật chất – Chủ đề 2.1</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{--sk1:#8fd8ff;--sk2:#ecf9ff;--h1:#b8f08e;--h2:#8fdc66;--card:#ffffff;--tx:#1f2937;--mu:#5b6473;--bd:#e3dccb;--ac:#3b8df0;--ok:#2fbf6a;--no:#ff6070;--gd:#ffcf45;--wd:#e8ad66;--wd2:#c98640;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:light}
+@media (prefers-color-scheme:dark){:root[data-theme="never"]{--sk1:#1b2a42;--sk2:#34506f;--h1:#3f5c3a;--h2:#2f4a2e;--card:#222a36;--tx:#eef1f6;--mu:#a3adbd;--bd:#3a4456;--ac:#7fb0e6;--ok:#58c58b;--no:#ff8580;color-scheme:dark}}
+:root[data-theme="never"]{--sk1:#1b2a42;--sk2:#34506f;--h1:#3f5c3a;--h2:#2f4a2e;--card:#222a36;--tx:#eef1f6;--mu:#a3adbd;--bd:#3a4456;--ac:#7fb0e6;--ok:#58c58b;--no:#ff8580;color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px);height:100%}
+*{box-sizing:border-box}
+body{margin:0;min-height:100%;font-family:"Be Vietnam Pro",system-ui,sans-serif;color:var(--tx);background:linear-gradient(var(--sk1),var(--sk2) 60%);position:relative;overflow-x:hidden}
+.hill{position:fixed;left:-10%;width:120%;border-radius:50% 50% 0 0;z-index:0}
+.h1{bottom:-12vh;height:34vh;background:var(--h1)}.h2{bottom:-16vh;height:30vh;background:var(--h2);left:-30%}
+.fence{position:fixed;bottom:5vh;left:0;right:0;height:5px;background:var(--wd);box-shadow:0 14px 0 var(--wd);z-index:0}
+.sun{position:fixed;top:40px;right:7%;width:56px;height:56px;border-radius:50%;background:#ffd84d;box-shadow:0 0 0 10px rgba(255,216,77,.35);z-index:0}
+main{position:relative;z-index:1;max-width:920px;margin:0 auto;padding:14px 14px 90px}
+.top{display:flex;align-items:center;gap:10px;margin-bottom:22px}
+.top h2{flex:1;margin:0;font-size:1rem;color:#fff;text-shadow:0 1px 3px rgba(0,0,0,.35)}
+.pill{display:flex;align-items:center;gap:6px;background:var(--card);border:3px solid var(--wd);border-radius:999px;min-width:40px;height:40px;padding:0 12px;font:inherit;font-weight:700;color:var(--tx);cursor:pointer}
+.board{background:var(--card);border:6px solid var(--wd);border-radius:20px;box-shadow:0 6px 0 var(--wd2),0 14px 30px rgba(0,0,0,.2);padding:24px;position:relative}
+.board:before,.board:after{content:"";position:absolute;top:-24px;width:12px;height:18px;background:var(--wd2);border-radius:4px}.board:before{left:7%}.board:after{right:7%}
+.tag{display:inline-block;background:var(--ac);color:#fff;font-weight:700;font-size:.8rem;border-radius:8px;padding:3px 12px}
+.eyebrow{font-size:.72rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--wd2)}
+h1{font-size:2.3rem;line-height:1.15;margin:12px 0;font-weight:800}h1 b{color:var(--ok)}h1 span{color:var(--no)}
+h3{margin:2px 0 10px;font-size:1.5rem}p{color:var(--mu);margin:6px 0}
+.btn{border:0;border-radius:12px;padding:12px 24px;font:inherit;font-weight:700;cursor:pointer;color:#fff;background:var(--ok);box-shadow:0 4px 0 rgba(0,0,0,.25)}
+.btn.y{background:var(--gd);color:#2b2208}.btn.w{background:transparent;color:var(--tx);border:2px solid var(--bd);box-shadow:none}
+.center{text-align:center}.note{background:rgba(217,165,33,.15);border:2px dashed var(--gd);border-radius:12px;padding:12px 14px;margin:14px 0;color:var(--tx);font-size:.92rem}
+.zones{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px}
+.zone{border:2px solid var(--bd);border-radius:14px;padding:12px;text-align:left;background:var(--card);color:var(--tx);font:inherit;cursor:pointer}
+.zone:hover{border-color:var(--ac)}.zone .tag{font-size:.7rem;background:#8b5cf6}.zone b{display:block;margin:10px 0 4px}.zone small{color:var(--mu)}
+.stars{color:#c9ced6;letter-spacing:2px;font-size:1.2rem}.stars i{font-style:normal}.stars .on{color:var(--gd)}
+.dots{display:flex;gap:6px;float:right}.dots i{width:10px;height:10px;border-radius:50%;background:var(--bd)}.dots .cur{background:var(--gd)}.dots .done{background:var(--ok)}
+.q{font-size:1.2rem;font-weight:700;text-align:center;margin:16px 0}
+.opts{display:grid;gap:10px;max-width:640px;margin:0 auto}
+.opt{border:2px solid var(--bd);border-radius:12px;background:var(--card);color:var(--tx);padding:12px 16px;text-align:left;font:inherit;cursor:pointer}
+.opt:hover:not(:disabled){border-color:var(--ac)}.opt.ok{border-color:var(--ok);background:rgba(46,139,87,.18)}.opt.no{border-color:var(--no);background:rgba(192,68,63,.16)}.opt.picked{border-color:var(--ac);opacity:.55}
+.tf{grid-template-columns:1fr 1fr}.tf .opt{text-align:center;font-weight:800;font-size:1.1rem}
+.slots{max-width:640px;margin:0 auto 12px;display:grid;gap:6px}.slot{border:2px dashed var(--bd);border-radius:10px;padding:8px 12px;min-height:40px;color:var(--mu);font-size:.9rem}.slot.f{border:2px solid var(--ok);color:var(--tx);background:rgba(46,139,87,.14)}
+.fb{margin-top:16px;border-radius:12px;padding:12px 16px;display:flex;gap:14px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+.fb.ok{background:rgba(46,139,87,.16);border:2px solid var(--ok)}.fb.no{background:rgba(192,68,63,.14);border:2px solid var(--no)}.fb div{flex:1;min-width:200px;font-size:.93rem}
+.hide{display:none!important}.big{font-size:1.5rem}.row{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:18px}
+.team{margin:0 auto 14px;padding:10px 14px;border-radius:14px;background:linear-gradient(90deg,rgba(59,141,240,.12),rgba(47,191,106,.12));border:2px solid var(--bd);max-width:580px}.mem{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:8px}.mem span{background:var(--card);border:2px solid var(--ac);color:var(--tx);border-radius:999px;padding:4px 12px;font-weight:700;font-size:.85rem}
+@keyframes pop{0%{transform:scale(.85);opacity:0}60%{transform:scale(1.04)}100%{transform:scale(1);opacity:1}}@keyframes shake{20%,60%{transform:translateX(-7px)}40%,80%{transform:translateX(7px)}}@keyframes bounce{0%,100%{transform:scale(1)}40%{transform:scale(1.06)}}@keyframes float{50%{transform:translateY(-6px)}}@keyframes starpop{0%{transform:scale(0) rotate(-90deg)}70%{transform:scale(1.4) rotate(10deg)}100%{transform:scale(1) rotate(0)}}@keyframes fall{to{transform:translateY(110vh) rotate(720deg)}}
+.board{animation:pop .35s ease-out}.sun{animation:float 4s ease-in-out infinite}.fb{animation:pop .3s}
+.opt{transition:transform .15s,border-color .15s,box-shadow .15s}.opt:hover:not(:disabled){transform:translateY(-2px);box-shadow:0 4px 0 var(--ac)}.opt.ok{animation:bounce .5s}.opt.no{animation:shake .4s}
+.zone{transition:transform .2s,box-shadow .2s}.zone:hover{transform:translateY(-5px) rotate(-1deg);box-shadow:0 8px 0 rgba(59,141,240,.35)}
+.stars i.on{display:inline-block;animation:starpop .6s both}.stars i.on:nth-child(2){animation-delay:.2s}.stars i.on:nth-child(3){animation-delay:.4s}
+.btn{transition:transform .1s,box-shadow .1s}.btn:hover{transform:translateY(-2px)}.btn:active{transform:translateY(3px);box-shadow:0 1px 0 rgba(0,0,0,.25)}
+.conf{position:fixed;top:-20px;width:10px;height:14px;z-index:5;pointer-events:none;animation:fall 2.4s linear forwards}
+.cert{border:3px solid var(--gd);background:rgba(217,165,33,.12);border-radius:16px;padding:16px;max-width:540px;margin:14px auto}.cert h3{color:var(--ok);margin:0 0 6px}.big2{font-size:2.6rem;font-weight:800;color:var(--no);line-height:1.2}.chips{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px;margin:14px 0}.chip{border:1px solid var(--bd);border-radius:10px;padding:8px;font-size:.85rem}
+@media(max-width:560px){h1{font-size:1.8rem}.board{padding:18px 14px}}
+</style></head><body>
+<div class="sun"></div><div class="hill h2"></div><div class="hill h1"></div><div class="fence"></div>
+<main>
+<div class="top"><button class="pill" onclick="go('map')" title="Bản đồ">⌂</button><h2 id="ttl">Hành trình Vật chất</h2>
+<div class="pill">★ <span id="pts">0</span></div><button class="pill" id="snd" onclick="toggleSnd()" title="Âm thanh">🔊</button></div>
+
+<section id="intro" class="board center">
+<div class="team"><div class="eyebrow">Nhóm thực hiện</div><div class="mem"><span>Phạm Thế Hoàng</span><span>Đinh Mạnh Hùng</span><span>Nguyễn Xuân Hoàng</span><span>Bùi Anh Đạt</span></div></div>
+<span class="tag">Chủ đề 2 · Mục 2.1</span>
+<h1><span>Hành trình</span><br><b>Vật chất</b></h1>
+<p>Quan niệm của chủ nghĩa duy vật biện chứng về vật chất. Vượt qua 5 khu trên bản đồ, mỗi câu đúng được 10 điểm.</p>
+<div class="row"><button class="btn y" onclick="go('map')">Bắt đầu hành trình</button></div>
+<div class="note" style="display:inline-block">Học phần Triết học Mác – Lênin · ICTU</div>
+</section>
+
+<section id="map" class="board hide">
+<div class="eyebrow">Chọn một khu để chơi</div><h3>Bản đồ hành trình</h3>
+<div class="note"><b>Ghi nhớ:</b> “Vật chất là phạm trù triết học dùng để chỉ thực tại khách quan, được đem lại cho con người trong cảm giác, được cảm giác chép lại, chụp lại, phản ánh và tồn tại không lệ thuộc vào cảm giác.” (V.I. Lênin)</div>
+<div class="zones" id="zones"></div>
+</section>
+
+<section id="play" class="board hide">
+<div class="dots" id="dots"></div>
+<div class="eyebrow" id="zt"></div><h3 id="zn"></h3>
+<div class="q" id="qt"></div><div id="slots" class="slots hide"></div><div class="opts" id="ops"></div>
+<div id="fb" class="fb hide"><div id="fm"></div><button class="btn" id="nx" onclick="next()">Câu tiếp</button></div>
+</section>
+
+<section id="res" class="board hide center">
+<div class="eyebrow" id="rz"></div><h3 id="rt"></h3><div class="stars big" id="rs"></div><p id="rm"></p>
+<div class="row"><button class="btn w" onclick="start(cz)">Chơi lại khu này</button><button class="btn" id="nz" onclick="start(cz+1)">Khu tiếp theo</button><button class="btn y hide" id="vf" onclick="showTotal()">Xem kết quả</button><button class="btn w" onclick="go('map')">Bản đồ</button></div>
+</section>
+<section id="fz" class="board hide center"><div class="eyebrow">Tổng kết</div><div class="stars big" id="fst"></div>
+<div class="cert"><h3>Giấy khen Hành trình Vật chất</h3><p>Đã hoàn thành hành trình khám phá quan niệm của chủ nghĩa duy vật biện chứng về vật chất.</p><div class="big2" id="fp"></div><p id="fmsg"></p><p style="font-size:.85rem">Khoa Khoa học cơ bản · Trường Đại học Công nghệ Thông tin và Truyền thông</p></div>
+<div class="chips" id="chips"></div><div class="row"><button class="btn y" onclick="resetAll()">Chơi lại từ đầu</button><button class="btn w" onclick="go('map')">Bản đồ</button></div></section>
+</main>
+<script>
+var Z=[
+{t:"Khu 1 · Khởi động",n:"Đúng hay sai?",d:"Xác định đúng / sai",k:"tf",q:[
+{q:"Chủ nghĩa duy tâm phủ nhận sự tồn tại của mọi sự vật, hiện tượng vật chất.",a:1,e:"Sai. Chủ nghĩa duy tâm thừa nhận sự vật, hiện tượng tồn tại nhưng phủ định tính khách quan của chúng."},
+{q:"Thuyết Ngũ hành coi Kim, Mộc, Thủy, Hỏa, Thổ là các yếu tố khởi nguyên của vạn vật.",a:0,e:"Đúng. Năm yếu tố này tồn tại trong quan hệ sinh – khắc – thừa – vũ."},
+{q:"Theo Lênin, vật chất chỉ bao gồm những gì được cấu tạo từ nguyên tử.",a:1,e:"Sai. Vật chất là tất cả những gì tồn tại khách quan, độc lập với ý thức, không chỉ nguyên tử."}]},
+{t:"Khu 2 · Khám phá",n:"Quan niệm trước Mác",d:"Chọn đáp án đúng",k:"mc",q:[
+{q:"Nhà triết học cổ đại nào cho rằng vật chất là nguyên tử?",o:["Talét","Hêraclít","Đêmôcrit","Anaximen"],a:2,e:"Đêmôcrit quan niệm vật chất là nguyên tử."},
+{q:"Hạn chế của chủ nghĩa duy vật thế kỷ XVII–XVIII là gì?",o:["Phủ nhận nguyên tử tồn tại","Đồng nhất vật chất với khối lượng, giải thích thế giới bằng cơ học","Coi ý thức có trước vật chất","Không thừa nhận thế giới vật chất"],a:1,e:"Họ đồng nhất vật chất với khối lượng, tách rời vật chất khỏi vận động, không gian, thời gian, nên mang phương pháp luận siêu hình."},
+{q:"Lênin định nghĩa vật chất bằng phương pháp nào?",o:["Quy về một khái niệm rộng hơn","Liệt kê các dạng vật chất","Đối lập vật chất với ý thức","Đồng nhất với nguyên tử"],a:2,e:"Đó là phương pháp định nghĩa không thông thường: đối lập vật chất với ý thức."}]},
+{t:"Khu 3 · Hoạt động",n:"Dòng thời gian",d:"Sắp xếp đúng thứ tự",k:"or",q:[
+{q:"Sắp xếp các phát minh khoa học theo thứ tự thời gian.",i:["Rơn-ghen phát hiện tia X (1895)","Béc-cơ-ren phát hiện phóng xạ (1896)","Tômxơn phát hiện điện tử (1897)","Kaufman: khối lượng biến đổi theo vận tốc (1901)"],e:"Trình tự: 1895 → 1896 → 1897 → 1901."},
+{q:"Sắp xếp các hình thức vận động từ thấp đến cao.",i:["Cơ học","Vật lý","Hóa học","Sinh học","Xã hội"],e:"Hình thức vận động cao xuất hiện trên cơ sở các hình thức thấp hơn."},
+{q:"Sắp xếp quá trình phát triển quan niệm về vật chất.",i:["Duy vật cổ đại","Duy vật thế kỷ XVII–XVIII","Khủng hoảng vật lý cuối XIX – đầu XX","Định nghĩa vật chất của Lênin (1908)"],e:"Khủng hoảng của vật lý học là bối cảnh để Lênin đưa ra định nghĩa mới."}]},
+{t:"Khu 4 · Luyện tập",n:"Điền khuyết",d:"Chọn từ thích hợp",k:"mc",q:[
+{q:"Vật chất là một ___ triết học dùng để chỉ thực tại khách quan.",o:["định luật","phạm trù","khái niệm khoa học","nguyên lý"],a:1,e:"Vật chất là phạm trù triết học."},
+{q:"Thuộc tính cơ bản nhất, phổ biến nhất của mọi dạng vật chất là ___.",o:["có khối lượng","tồn tại khách quan","có thể quan sát bằng mắt","được cấu tạo từ nguyên tử"],a:1,e:"Đó là tồn tại khách quan, không lệ thuộc vào ý thức."},
+{q:"Vận động là ___ tồn tại của vật chất.",o:["hình thức","phương thức","điều kiện","kết quả"],a:1,e:"Vận động là phương thức tồn tại; không gian và thời gian mới là hình thức tồn tại."}]},
+{t:"Khu 5 · Vận dụng",n:"Tình huống",d:"Vận dụng lý luận",k:"mc",q:[
+{q:"Một người nói: “Nguyên tử phân rã nên vật chất tiêu tan.” Theo Lênin, nhận định đúng là:",o:["Vật chất thật sự tiêu tan","Chỉ giới hạn hiểu biết của con người về vật chất bị tiêu tan","Khoa học đã bác bỏ vật chất","Vật chất tiêu tan khi ý thức mất đi"],a:1,e:"Phát minh mới không bác bỏ vật chất mà chỉ làm rõ hơn hiểu biết còn hạn chế của con người."},
+{q:"Hòn đá nằm yên trên mặt đất. Nhận định nào đúng?",o:["Hòn đá không vận động","Đứng im là tuyệt đối","Đứng im chỉ tương đối, tạm thời; bên trong vẫn vận động","Đứng im chứng tỏ vật chất không vận động"],a:2,e:"Vận động là tuyệt đối; đứng im chỉ xảy ra trong một quan hệ, một hình thức vận động nhất định."},
+{q:"Việc nhận thức bản chất ánh sáng đi từ sóng, hạt đến thống nhất sóng – hạt minh họa điều gì?",o:["Con người không thể nhận thức thế giới","Vật chất có thể được nhận thức, ngày càng sâu hơn","Ánh sáng không phải vật chất","Ý thức quyết định bản chất ánh sáng"],a:1,e:"Vật chất được ý thức chép lại, phản ánh nên có thể nhận thức được."}]}];
+var S=[0,0,0,0,0],P=0,cz=0,qi=0,ok=0,lock=false,snd=true,ac,st=[],$=function(x){return document.getElementById(x)};
+function beep(f){if(!snd)return;try{ac=ac||new(window.AudioContext||window.webkitAudioContext)();var o=ac.createOscillator(),g=ac.createGain();o.frequency.value=f;g.gain.value=.08;o.connect(g);g.connect(ac.destination);o.start();o.stop(ac.currentTime+.15)}catch(e){}}
+function toggleSnd(){snd=!snd;$("snd").textContent=snd?"🔊":"🔇"}
+function go(s){["intro","map","play","res","fz"].forEach(function(x){$(x).classList.toggle("hide",x!=s)});$("ttl").textContent=s=="map"?"Bản đồ hành trình":"Hành trình Vật chất";if(s=="map")drawMap()}
+function stars(n){var h="";for(var i=0;i<3;i++)h+='<i class="'+(i<n?"on":"")+'">★</i>';return h}
+function showTotal(){go("fz");$("ttl").textContent="Tổng kết";var t=S.reduce(function(a,b){return a+b},0);$("fst").innerHTML=stars(t>=13?3:t>=8?2:t>=1?1:0);countUp(P);if(t>=8)boom(80);$("fmsg").textContent=t>=13?"Bạn đã nắm vững nội dung mục 2.1.":t>=8?"Kết quả tốt, hãy ôn lại các khu còn thiếu sao.":"Hãy quay lại bản đồ và chơi lại các khu để cải thiện kết quả.";$("chips").innerHTML=Z.map(function(z,i){return '<div class="chip">'+z.n+'<div class="stars">'+stars(S[i])+'</div></div>'}).join("")}
+function resetAll(){S=[0,0,0,0,0];P=0;go("map")}
+function boom(n){var c=["#ffcf45","#3b8df0","#2fbf6a","#ff6070","#8b5cf6"];for(var i=0;i<n;i++){var d=document.createElement("div");d.className="conf";d.style.left=Math.random()*100+"vw";d.style.background=c[i%5];d.style.animationDelay=Math.random()*.6+"s";d.style.animationDuration=1.8+Math.random()*1.4+"s";document.body.appendChild(d);setTimeout(function(x){x.remove()},3800,d)}}
+function pulse(){var e=$("pts").parentNode;e.style.transition="transform .15s";e.style.transform="scale(1.25)";setTimeout(function(){e.style.transform=""},180)}
+function countUp(v){var e=$("fp"),i=0,s=Math.max(1,Math.ceil(v/30)),t=setInterval(function(){i=Math.min(v,i+s);e.textContent=i+" điểm";if(i>=v)clearInterval(t)},30)}
+function drawMap(){$("pts").textContent=P;$("zones").innerHTML=Z.map(function(z,i){return '<button class="zone" onclick="start('+i+')"><span class="tag">'+z.t.split(" · ")[0]+" · "+z.t.split(" · ")[1]+'</span><b>'+z.n+'</b><small>'+z.d+'</small><div class="stars">'+stars(S[i])+'</div></button>'}).join("")}
+function start(i){if(i>=Z.length){go("map");return}cz=i;qi=0;ok=0;go("play");$("ttl").textContent=Z[i].t;show()}
+function show(){var z=Z[cz],q=z.q[qi];lock=false;$("zt").textContent=z.t.split(" · ")[1];$("zn").textContent=z.n;$("qt").textContent=q.q;$("fb").classList.add("hide");
+$("dots").innerHTML=z.q.map(function(_,i){return '<i class="'+(i<qi?"done":i==qi?"cur":"")+'"></i>'}).join("");
+var o=$("ops"),s=$("slots");
+if(z.k=="or"){o.className="opts";s.classList.remove("hide");st=[];s.innerHTML=q.i.map(function(_,i){return '<div class="slot" id="s'+i+'">'+(i+1)+'.</div>'}).join("");
+var idx=q.i.map(function(_,i){return i}).sort(function(){return Math.random()-.5});if(idx.every(function(v,i){return v==i}))idx.reverse();
+o.innerHTML=idx.map(function(i){return '<button class="opt" id="c'+i+'" onclick="ord('+i+')">'+q.i[i]+'</button>'}).join("")}
+else{s.classList.add("hide");var L=z.k=="tf"?["Đúng","Sai"]:q.o;o.className="opts"+(z.k=="tf"?" tf":"");
+o.innerHTML=L.map(function(t,i){return '<button class="opt" id="c'+i+'" onclick="pick('+i+')">'+t+'</button>'}).join("")}}
+function fin(good){lock=true;var q=Z[cz].q[qi];if(good){ok++;P+=10;$("pts").textContent=P;beep(660);boom(14);pulse()}else beep(200);
+$("fb").className="fb "+(good?"ok":"no");$("fm").innerHTML="<b>"+(good?"Chính xác! +10 điểm":"Chưa đúng.")+"</b><br>"+q.e;$("nx").textContent=qi==Z[cz].q.length-1?"Xem kết quả":"Câu tiếp"}
+function pick(i){if(lock)return;var q=Z[cz].q[qi];document.querySelectorAll(".opt").forEach(function(b){b.disabled=true});
+$("c"+q.a).classList.add("ok");if(i!=q.a)$("c"+i).classList.add("no");fin(i==q.a)}
+var bad=false;
+function ord(i){if(lock)return;var q=Z[cz].q[qi];if(i==st.length){$("s"+i).className="slot f";$("s"+i).textContent=(i+1)+". "+q.i[i];$("c"+i).classList.add("picked");$("c"+i).disabled=true;st.push(i);beep(520);if(st.length==q.i.length)fin(!bad)}else{bad=true;beep(200);$("c"+i).classList.add("no");setTimeout(function(){$("c"+i).classList.remove("no")},400)}}
+function next(){bad=false;qi++;if(qi<Z[cz].q.length){show();return}
+var n=Z[cz].q.length,s=ok==n?3:ok==n-1?2:ok>0?1:0;S[cz]=Math.max(S[cz],s);go("res");$("ttl").textContent=Z[cz].t;$("rz").textContent=Z[cz].t.split(" · ")[1]+" · hoàn thành";
+$("rt").textContent=s==3?"Xuất sắc!":s==2?"Làm tốt lắm!":"Cố lên, chơi lại nhé!";$("rs").innerHTML=stars(s);if(s==3)boom(60);$("rm").textContent="Đúng "+ok+"/"+n+" câu ở khu “"+Z[cz].n+"”.";$("nz").classList.toggle("hide",cz==Z.length-1);$("vf").classList.toggle("hide",cz!=Z.length-1)}
+</script></body></html>
